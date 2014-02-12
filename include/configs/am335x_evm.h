@@ -18,6 +18,7 @@
 #define CONFIG_SYS_NO_FLASH
 #ifndef CONFIG_SPI_BOOT
 #define CONFIG_NAND_ENV
+#define CONFIG_CMD_NET
 #endif
 
 #include <asm/arch/cpu.h>		/* get chip and board defs */
