@@ -241,6 +241,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 #endif
 #else
 #define CONFIG_BOOTCOMMAND \
+	"run net_boot;"\
 	"if mmc rescan; then " \
 		"echo SD/MMC found on device ${mmc_dev};" \
 		"if run loadbootenv; then " \
