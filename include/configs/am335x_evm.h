@@ -435,6 +435,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 #else
 # define CONFIG_CMD_DHCP
 # define CONFIG_CMD_PING
+# define CONFIG_CMD_TFTP
 #endif
 
 #if defined(CONFIG_CMD_NET)
