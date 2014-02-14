@@ -75,3 +75,5 @@ cscope.*
 #compile log
 compile*.log
 complie*.log
+MLO
+MLO.spi
