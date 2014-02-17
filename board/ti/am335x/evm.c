@@ -230,6 +230,8 @@ void dram_init_banksize (void)
 	gd->bd->bi_dram[0].size = PHYS_DRAM_1_SIZE;
 }
 
+
+
 #ifdef CONFIG_SPL_BUILD
 static void Data_Macro_Config_ddr2(int dataMacroNum)
 {
@@ -535,6 +537,50 @@ static void rtc32k_enable(void)
 }
 #endif
 
+
+void print_i2c_BBB_id_gm(struct am335x_baseboard_id *header)
+{
+	printf("magic number (0x%x) in EEPROM\n",
+					header->magic);
+	printf("board name (%s) in EEPROM\n",
+					header->name);
+	printf("board version (%s) in EEPROM\n",
+					header->version);
+	printf("board serial (%s) in EEPROM\n",
+					header->serial);
+	printf("board config (%s) in EEPROM\n",
+					header->config);
+	printf("board mac_addr0 (%s) in EEPROM\n",
+					header->mac_addr[0]);					
+	printf("board mac_addr1 (%s) in EEPROM\n",
+					header->mac_addr[1]);		
+	printf("board mac_addr2 (%s) in EEPROM\n",
+					header->mac_addr[2]);		
+															
+	int i;
+	char *char_p = (char *)header;
+	for(i=0;i<sizeof(struct am335x_baseboard_id);i++,char_p++)
+	{
+		printf("%02x ",*char_p);
+	}
+	printf("\nboard info print over.  ok.gaoming\n");
+}
+
+void fork_baseboard_info(struct am335x_baseboard_id *header)
+{
+/*	header->magic = 0xee3355aa;
+	header->name = "A335BNLT";
+	header->version = "0A5C";
+	header->serial = "3513BBBK2712";
+	header->config = '0xff';
+*/
+	header->magic = 0xee3355aa;
+	strcpy(header->name,"A335BNLT");
+	strcpy(header->version,"0A5C");
+	strcpy(header->serial,"3513BBBK2712");
+	header->config[0]=0xff;
+}
+
 /*
  * Read header information from EEPROM into global structure.
  */
@@ -554,6 +600,10 @@ int read_eeprom(void)
 			" wrong on the I2C bus.\n");
 		return 1;
 	}
+	print_i2c_BBB_id_gm(&header);
+	fork_baseboard_info(&header);
+	printf("\nreplay board info !\n");
+	print_i2c_BBB_id_gm(&header);
 
 	if (header.magic != 0xEE3355AA) {
 		/* read the eeprom using i2c again, but use only a 1 byte address */
@@ -775,7 +825,8 @@ void spl_board_init(void)
 		}
 
 		/* Set MPU Frequency to 1GHz */
-		mpu_pll_config(MPUPLL_M_1000);
+		//mpu_pll_config(MPUPLL_M_1000);
+		mpu_pll_config(MPUPLL_M_720);
 
 	} else {
 		uchar buf[4];
