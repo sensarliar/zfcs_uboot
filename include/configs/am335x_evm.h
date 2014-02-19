@@ -13,8 +13,6 @@
 #ifndef __CONFIG_AM335X_EVM_H
 #define __CONFIG_AM335X_EVM_H
 
-//#define CONFIG_CMD_NET   //add by gm
-
 #define CONFIG_AM335X
 #define CONFIG_TI81XX
 #define CONFIG_SYS_NO_FLASH
