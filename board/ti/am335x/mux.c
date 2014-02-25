@@ -281,6 +281,29 @@ static struct module_pin_mux uart3_pin_mux[] = {
 	{-1},
 };
 
+
+#ifdef CONFIG_NAND
+static struct module_pin_mux nand_pin_mux[] = {
+	{OFFSET(gpmc_ad0), (MODE(0) | PULLUP_EN | RXACTIVE)},	/* NAND AD0 */
+	{OFFSET(gpmc_ad1), (MODE(0) | PULLUP_EN | RXACTIVE)},	/* NAND AD1 */
+	{OFFSET(gpmc_ad2), (MODE(0) | PULLUP_EN | RXACTIVE)},	/* NAND AD2 */
+	{OFFSET(gpmc_ad3), (MODE(0) | PULLUP_EN | RXACTIVE)},	/* NAND AD3 */
+	{OFFSET(gpmc_ad4), (MODE(0) | PULLUP_EN | RXACTIVE)},	/* NAND AD4 */
+	{OFFSET(gpmc_ad5), (MODE(0) | PULLUP_EN | RXACTIVE)},	/* NAND AD5 */
+	{OFFSET(gpmc_ad6), (MODE(0) | PULLUP_EN | RXACTIVE)},	/* NAND AD6 */
+	{OFFSET(gpmc_ad7), (MODE(0) | PULLUP_EN | RXACTIVE)},	/* NAND AD7 */
+	{OFFSET(gpmc_wait0), (MODE(0) | RXACTIVE | PULLUP_EN)}, /* NAND WAIT */
+	{OFFSET(gpmc_wpn), (MODE(7) | PULLUP_EN | RXACTIVE)},	/* NAND_WPN */
+	{OFFSET(gpmc_csn0), (MODE(0) | PULLUDEN)},	/* NAND_CS0 */
+	{OFFSET(gpmc_advn_ale), (MODE(0) | PULLUDEN)}, /* NAND_ADV_ALE */
+	{OFFSET(gpmc_oen_ren), (MODE(0) | PULLUDEN)},	/* NAND_OE */
+	{OFFSET(gpmc_wen), (MODE(0) | PULLUDEN)},	/* NAND_WEN */
+	{OFFSET(gpmc_be0n_cle), (MODE(0) | PULLUDEN)},	/* NAND_BE_CLE */
+	{-1},
+};
+#endif
+
+
 static struct module_pin_mux __attribute__((section (".data"))) i2c0_pin_mux[] =
 {
 	{OFFSET(i2c0_sda), (MODE(0) | RXACTIVE | PULLUDEN | SLEWCTRL)},	/* I2C_DATA */
@@ -459,6 +482,11 @@ static struct module_pin_mux chipsee_led_pin_mux[] = {
 static struct evm_pin_mux general_purpose_evm_pin_mux[] = {
 	{uart0_pin_mux, PROFILE_ALL, DEV_ON_BASEBOARD},
 	{i2c1_pin_mux, PROFILE_ALL & ~PROFILE_2 & ~PROFILE_4, DEV_ON_BASEBOARD},
+
+#ifdef CONFIG_NAND
+	{nand_pin_mux, PROFILE_ALL & ~PROFILE_2 & ~PROFILE_3, DEV_ON_DGHTR_BRD},
+#endif
+//add nand
 #ifndef CONFIG_NO_ETH
 	{rgmii1_pin_mux, PROFILE_ALL, DEV_ON_BASEBOARD},
 	{rgmii2_pin_mux, PROFILE_1 | PROFILE_2 | PROFILE_4 | PROFILE_6,
@@ -466,7 +494,7 @@ static struct evm_pin_mux general_purpose_evm_pin_mux[] = {
 #endif
 #ifdef CONFIG_MMC
 	{mmc0_pin_mux, PROFILE_ALL, DEV_ON_BASEBOARD},
-	{mmc1_pin_mux, PROFILE_2, DEV_ON_DGHTR_BRD},
+//	{mmc1_pin_mux, PROFILE_2, DEV_ON_DGHTR_BRD},
 #endif
 #ifdef CONFIG_SPI
 	{spi0_pin_mux, PROFILE_2, DEV_ON_DGHTR_BRD},
@@ -536,12 +564,17 @@ static struct evm_pin_mux sk_evm_pin_mux[] = {
 static struct evm_pin_mux beaglebone_pin_mux[] = {
 	{uart0_pin_mux, PROFILE_ALL, DEV_ON_BASEBOARD},
 	{i2c1_pin_mux, PROFILE_ALL & ~PROFILE_2 & ~PROFILE_4, DEV_ON_BASEBOARD},
+
+#ifdef CONFIG_NAND
+	{nand_pin_mux, PROFILE_ALL & ~PROFILE_2 & ~PROFILE_3, DEV_ON_DGHTR_BRD},
+#endif
+//add nand
 #ifndef CONFIG_NO_ETH
 	{mii1_pin_mux, PROFILE_ALL, DEV_ON_BASEBOARD},
 #endif
 #ifdef CONFIG_MMC
 	{mmc0_pin_mux, PROFILE_ALL, DEV_ON_BASEBOARD},
-	{mmc1_pin_mux, PROFILE_ALL, DEV_ON_BASEBOARD},
+//	{mmc1_pin_mux, PROFILE_ALL, DEV_ON_BASEBOARD},
 #endif
 #ifdef CONFIG_SPI
 	{spi0_pin_mux, PROFILE_2, DEV_ON_DGHTR_BRD},

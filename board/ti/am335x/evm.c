@@ -1006,7 +1006,7 @@ int board_init(void)
 	/* Display logo */
 	Lcd_Init();
 #endif
-	enable_eth_pin_mux();
+//	enable_eth_pin_mux();
 
 	board_id = GP_BOARD;
 	profile = 1;	/* profile 0 is internally considered as 1 */
@@ -1409,7 +1409,7 @@ int board_eth_init(bd_t *bis)
 int board_mmc_init(bd_t *bis)
 {
 	omap_mmc_init(0);
-	omap_mmc_init(1);
+//	omap_mmc_init(1);
 	return 0;
 }
 #endif
