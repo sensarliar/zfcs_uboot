@@ -240,7 +240,6 @@ to a higher value if a higher sized RAM support is available in Hardware */
 #endif
 #else
 #define CONFIG_BOOTCOMMAND \
-	"run net_boot;"\
 	"if mmc rescan; then " \
 		"echo SD/MMC found on device ${mmc_dev};" \
 		"if run loadbootenv; then " \
@@ -426,6 +425,8 @@ to a higher value if a higher sized RAM support is available in Hardware */
  * select serial console configuration
  */
 #define CONFIG_SERIAL1			1
+#define CONFIG_SERIAL2			1
+#define CONFIG_SERIAL3			1
 #define CONFIG_CONS_INDEX		2
 #define CONFIG_SYS_CONSOLE_INFO_QUIET
 
@@ -580,6 +581,6 @@ to a higher value if a higher sized RAM support is available in Hardware */
 #undef CONFIG_USE_IRQ
 
 /* LCD Support */
-#define CONFIG_LCD_TCM
+/* #define CONFIG_LCD_TCM */
 
 #endif	/* ! __CONFIG_AM335X_EVM_H */

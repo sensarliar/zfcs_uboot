@@ -537,7 +537,7 @@ static void rtc32k_enable(void)
 }
 #endif
 
-
+/*
 void print_i2c_BBB_id_gm(struct am335x_baseboard_id *header)
 {
 	printf("magic number (0x%x) in EEPROM\n",
@@ -565,7 +565,7 @@ void print_i2c_BBB_id_gm(struct am335x_baseboard_id *header)
 	}
 	printf("\nboard info print over.  ok.gaoming\n");
 }
-
+*/
 void fork_baseboard_info(struct am335x_baseboard_id *header)
 {
 /*	header->magic = 0xee3355aa;
@@ -600,10 +600,10 @@ int read_eeprom(void)
 			" wrong on the I2C bus.\n");
 		return 1;
 	}
-	print_i2c_BBB_id_gm(&header);
+//	print_i2c_BBB_id_gm(&header);
 	fork_baseboard_info(&header);
 	printf("\nreplay board info !\n");
-	print_i2c_BBB_id_gm(&header);
+//	print_i2c_BBB_id_gm(&header);
 
 	if (header.magic != 0xEE3355AA) {
 		/* read the eeprom using i2c again, but use only a 1 byte address */
@@ -1004,7 +1004,7 @@ int board_init(void)
 	gpio_request(50, "");
 	gpio_direction_output(50, 1);
 	/* Display logo */
-	Lcd_Init();
+//	Lcd_Init();
 #endif
 //	enable_eth_pin_mux();
 
