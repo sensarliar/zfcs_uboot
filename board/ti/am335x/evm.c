@@ -1008,7 +1008,7 @@ int board_init(void)
 #endif
 //	enable_eth_pin_mux();
 
-	board_id = GP_BOARD;
+	board_id = BONE_BOARD;
 	profile = 1;	/* profile 0 is internally considered as 1 */
 	daughter_board_connected = 1;
 	configure_evm_pin_mux(board_id, header.version, profile, daughter_board_connected);
