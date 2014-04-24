@@ -143,7 +143,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 	"loadaddr=0x82000000\0" \
 	"kloadaddr=0x80007fc0\0" \
 	"script_addr=0x81900000\0" \
-	"console=ttyO1,115200n8\0" \
+	"console=ttyO2,115200n8\0" \
 	"mmc_dev=0\0" \
 	"mmc_root=/dev/mmcblk0p2 rw\0" \
 	"nand_root=ubi0:rootfs rw ubi.mtd=7,2048\0" \
@@ -160,6 +160,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 	"spi_img_siz=0x380000\0" \
 	"nor_img_siz=0x280000\0" \
 	"spi_bus_no=0\0" \
+	"mpurate=720" \
 	"rootpath=/export/rootfs\0" \
 	"nfsopts=nolock\0" \
 	"static_ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}:${hostname}" \
@@ -229,7 +230,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 
 #ifndef CONFIG_RESTORE_FLASH
 /* set to negative value for no autoboot */
-#define CONFIG_BOOTDELAY		5
+#define CONFIG_BOOTDELAY		3
 
 #ifdef CONFIG_STORAGE_EMMC
 #ifdef CONFIG_USE_MMC0
@@ -240,6 +241,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 #endif
 #else
 #define CONFIG_BOOTCOMMAND \
+	"run nand_boot;" \
 	"if mmc rescan; then " \
 		"echo SD/MMC found on device ${mmc_dev};" \
 		"if run loadbootenv; then " \
@@ -255,7 +257,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 			"bootm ${kloadaddr};" \
 		"fi;" \
 	"fi;" \
-	"run nand_boot;" \
+
 
 #endif
 
@@ -414,8 +416,12 @@ to a higher value if a higher sized RAM support is available in Hardware */
 #define CONFIG_SYS_NS16550_REG_SIZE	(-4)
 #define CONFIG_SYS_NS16550_CLK		(48000000)
 #define CONFIG_SYS_NS16550_COM1		0x44e09000	/* Base EVM has UART0 */
-#define CONFIG_SYS_NS16550_COM2		0x48022000	/* Base EVM has UART0 */
+#define CONFIG_SYS_NS16550_COM2		0x48022000	/* Base EVM has UART1 */
+/*#define CONFIG_SYS_NS16550_COM3		0x48024000	 UART2 */
 #define CONFIG_SYS_NS16550_COM4		0x481A6000	/* UART3 on IA BOard */
+
+
+
 
 #define CONFIG_BAUDRATE			115200
 #define CONFIG_SYS_BAUDRATE_TABLE	{ 110, 300, 600, 1200, 2400, \
@@ -427,7 +433,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 #define CONFIG_SERIAL1			1
 #define CONFIG_SERIAL2			1
 #define CONFIG_SERIAL3			1
-#define CONFIG_CONS_INDEX		2
+#define CONFIG_CONS_INDEX		1
 #define CONFIG_SYS_CONSOLE_INFO_QUIET
 
 #if defined(CONFIG_NO_ETH)
