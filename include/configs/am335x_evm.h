@@ -229,7 +229,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 
 #ifndef CONFIG_RESTORE_FLASH
 /* set to negative value for no autoboot */
-#define CONFIG_BOOTDELAY		5
+#define CONFIG_BOOTDELAY		3
 
 #ifdef CONFIG_STORAGE_EMMC
 #ifdef CONFIG_USE_MMC0

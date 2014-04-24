@@ -1000,9 +1000,10 @@ int board_init(void)
         i2c_init(CONFIG_SYS_I2C_SPEED, CONFIG_SYS_I2C_SLAVE);
 #ifndef CONFIG_SPL_BUILD
 	/* Enable LCD backlight */
-	enable_gpio1_18_pin_mux();
+/*	enable_gpio1_18_pin_mux();
 	gpio_request(50, "");
 	gpio_direction_output(50, 1);
+*/
 	/* Display logo */
 //	Lcd_Init();
 #endif
