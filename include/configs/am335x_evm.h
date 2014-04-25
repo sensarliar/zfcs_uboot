@@ -143,7 +143,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 	"loadaddr=0x82000000\0" \
 	"kloadaddr=0x80007fc0\0" \
 	"script_addr=0x81900000\0" \
-	"console=ttyO1,115200n8\0" \
+	"console=ttyO0,115200n8\0" \
 	"verify=n\0"\
 	"lpj=3590144\0"\
 	"mmc_dev=0\0" \
@@ -429,7 +429,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 #define CONFIG_SERIAL1			1
 #define CONFIG_SERIAL2			1
 #define CONFIG_SERIAL3			1
-#define CONFIG_CONS_INDEX		2
+#define CONFIG_CONS_INDEX		1
 #define CONFIG_SYS_CONSOLE_INFO_QUIET
 
 #if defined(CONFIG_NO_ETH)
