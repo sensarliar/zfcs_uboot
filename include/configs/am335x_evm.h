@@ -144,6 +144,8 @@ to a higher value if a higher sized RAM support is available in Hardware */
 	"kloadaddr=0x80007fc0\0" \
 	"script_addr=0x81900000\0" \
 	"console=ttyO1,115200n8\0" \
+	"verify=n\0"\
+	"lpj=3590144\0"\
 	"mmc_dev=0\0" \
 	"mmc_root=/dev/mmcblk0p2 rw\0" \
 	"nand_root=ubi0:rootfs rw ubi.mtd=7,2048\0" \
