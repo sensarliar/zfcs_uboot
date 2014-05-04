@@ -242,6 +242,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 #endif
 #else
 #define CONFIG_BOOTCOMMAND \
+	"run nand_boot;" \
 	"if mmc rescan; then " \
 		"echo SD/MMC found on device ${mmc_dev};" \
 		"if run loadbootenv; then " \
@@ -257,7 +258,7 @@ to a higher value if a higher sized RAM support is available in Hardware */
 			"bootm ${kloadaddr};" \
 		"fi;" \
 	"fi;" \
-	"run nand_boot;" \
+
 
 #endif
 
