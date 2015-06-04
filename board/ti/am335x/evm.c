@@ -1325,12 +1325,13 @@ static struct musb_hdrc_platform_data musb_plat = {
 	(!defined(CONFIG_SPL_BUILD) || defined(CONFIG_SPL_USB_ETH_SUPPORT)))
 int board_eth_init(bd_t *bis)
 {
+
 	int rv, n = 0;
 #ifdef CONFIG_DRIVER_TI_CPSW
 	uint8_t mac_addr[6];
 	uint32_t mac_hi, mac_lo;
 	u_int32_t i;
-
+	udelay(1000000);
 	if (!eth_getenv_enetaddr("ethaddr", mac_addr)) {
 		debug("<ethaddr> not set. Reading from E-fuse\n");
 		/* try reading mac address from efuse */
