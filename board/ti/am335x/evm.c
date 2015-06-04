@@ -1330,6 +1330,7 @@ int board_eth_init(bd_t *bis)
 	uint32_t mac_hi, mac_lo;
 	u_int32_t i;
 
+	udelay(1000000);
 	if (!eth_getenv_enetaddr("ethaddr", mac_addr)) {
 		debug("<ethaddr> not set. Reading from E-fuse\n");
 		/* try reading mac address from efuse */
